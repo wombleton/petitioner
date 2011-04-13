@@ -13,12 +13,14 @@ html
       header
         .headline
           #title=title
+          #twitter=twitter
+          #facebook=facebook
+          a(href='/logout') logout
+        .details
       div#main(role='main')!=body
       footer
 
     script(src='/js/modernizr.js')
-    script(src='http://ajax.googleapis.com/ajax/libs/jquery/1.4.2/jquery.min.js')
-    script(src='/auth/client')
     script(src='/js/jquery.js')
     script(src='/js/enlist.js')
     
