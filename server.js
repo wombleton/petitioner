@@ -25,33 +25,38 @@ app.configure('development', function() {
 app.set('views', __dirname + '/views');
 app.set('view engine', 'jade');
 
-app.get('/', function(req, res) {
+function getAuth(req) {
   var details = req.getAuthDetails();
-  console.log(details);
+  return {
+    name: 'abcd',
+    url: 'http://fake.url/abcd'
+  }
+}
+
+app.get('/', function(req, res) {
+  var details = getAuth(req);
   res.render('index.jade', {
     locals: {
       title: config.title,
-      twitter: details && details.user && details.user.username,
-      facebook: details && details.user && details.user.name
+      user: details
     }
   });
 });
 
-app.get ('/logout', function(req, res, params) {
+app.get ('/retract', function(req, res, params) {
   req.logout();
   res.writeHead(303, { 'Location': "/" });
   res.end('');
 })
 
-app.get('/authenticated/', function(req, res) {
-  req.authenticate(['facebook'], function(err, authenticated) {
-    res.redirect('/');
-  });
-});
-
 app.get('/authenticated', function(req, res) {
-  req.authenticate(['twitter'], function(err, authenticated) {
-    res.redirect('/');
+  var mode = req.params.mode;
+  req.authenticate([mode], function(err, authenticated) {
+    if (authenticated) {
+      res.redirect('/');
+    } else {
+      res.redirect('/loginfail');
+    }
   });
 });
 
