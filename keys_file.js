@@ -1,13 +1,15 @@
+var config = require('./config.js').cfg;
+
 module.exports = {
   facebook: {
-    id: '',
-    secret: '',
-    callback: 'http://yourtesthost.com/auth/facebook_callback'
+    id: config.facebook_id,
+    secret: config.facebook_secret,
+    callback: config.facebook_callback
   },
 
   twitter: {
-    consumerkey: '',
-    consumersecret: '',
-    callback: 'http://yourtesthost.com/auth/twitter_callback'
+    consumerkey: config.twitter_key,
+    consumersecret: config.twitter_secret,
+    callback: config.twitter_callback
   }
 }

@@ -1,6 +1,7 @@
 var express = require('express'),
     easyoauth = require('easy-oauth'),
     app = express.createServer(),
+    config = require('./config').cfg,
     port = 80;
 
 app.configure(function() {
@@ -23,7 +24,11 @@ app.set('views', __dirname + '/views');
 app.set('view engine', 'jade');
 
 app.get('/', function(req, res) {
-  res.render('index.jade');
+  res.render('index.jade', {
+    locals: {
+      title: config.title
+    }
+  });
 });
 
 app.listen(port);
