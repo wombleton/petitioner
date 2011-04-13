@@ -13,9 +13,12 @@ html
       header
         .headline
           #title=title
-          #twitter=twitter
-          #facebook=facebook
-          a(href='/logout') logout
+          ul.controls
+            - if (user)
+              li
+                a.user(href=user.url)=user.name
+              li
+                a.logout(href='/logout') logout
         .details
       div#main(role='main')!=body
       footer
