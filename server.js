@@ -156,4 +156,27 @@ app.get('/authed/facebook/', function(req, res) {
   });
 });
 
+app.get('/plain', function(req, res) {
+  fs.readFile('petition.md', function(err, file) {
+    signups.get('doc', function(err, doc) {
+      var i,
+          list = doc.signups,
+          result = [];
+      result.push(config.title + '\r\n');
+      result.push('====================' + '\r\n');
+      result.push('\r\n');
+      result.push(file.toString());
+      result.push('\r\n');
+      result.push('\r\n');
+      result.push(list.length + ' signatures:\r\n');
+      result.push('\r\n');
+      for (i = 0; i < list.length; i++) {
+        result.push((i + 1) + '. ' + list[i].name + ' (' + list[i].url + ')\r\n');
+      }
+
+      res.send(result.join(''), { 'Content-Type': 'text/plain' }, 200);
+    });
+  });
+});
+
 app.listen(port);
