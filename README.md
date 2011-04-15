@@ -7,6 +7,7 @@ Configuration
 ============
 
 Two files need to be configured:
+
 * `config.js` with the facebook and twitter secrets, session secret, and website title
 * `petition.md` with the text of your petition. You can use markdown here.
 
