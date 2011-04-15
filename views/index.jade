@@ -1,5 +1,12 @@
 #petition!=petition
 
-a.facebookbutton(href='/auth/facebook') Login via facebook
-|  
-a.twitterbutton(href='/auth/twitter') Login via twitter
+- if (!user)
+  a.facebookbutton(href='/auth/facebook') Login via facebook
+  |
+  a.twitterbutton(href='/auth/twitter') Login via twitter
+
+ol
+  - for (var i = 0; i < signups.length; i++)
+    - var signup = signups[i]
+    li
+      a(href=signup.url)=signup.name

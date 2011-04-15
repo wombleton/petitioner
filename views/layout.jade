@@ -17,9 +17,12 @@ html
           ul.controls
             - if (user)
               li
+                | Thanks, you've signed up as
                 a.user(href=user.url)=user.name
               li
-                a.logout(href='/logout') logout
+                | (
+                a.undo(href='/undo') undo
+                | )
         .details
       div#main(role='main')!=body
       footer
